@@ -217,16 +217,6 @@ export default function HomePage({ company, posts }) {
         </div>
       </section>
 
-      {/* ── Stats ── */}
-      <section className="stats-section">
-        <div className="container">
-          <div className="stats-grid">
-            <div><div className="stat-number">500+</div><div className="stat-label">Mutlu Müşteri</div></div>
-            <div><div className="stat-number">%99.9</div><div className="stat-label">Kesintisiz Çalışma</div></div>
-            <div><div className="stat-number">15+</div><div className="stat-label">Farklı Sektör</div></div>
-          </div>
-        </div>
-      </section>
 
       {/* ── CTA ── */}
       <section className="cta-section">

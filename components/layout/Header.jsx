@@ -7,6 +7,7 @@ const NAV_FALLBACK = [
   { label: 'Sektörler',     href: '/sektorler' },
   { label: 'Paketler',      href: '/paketler' },
   { label: 'Karşılaştırma', href: '/karsilastirma' },
+  { label: 'Blog',          href: '/blog' },
   { label: 'İletişim',      href: '/iletisim' },
 ];
 
