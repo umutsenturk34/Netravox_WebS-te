@@ -127,7 +127,7 @@ export default function IletisimPage({ company }) {
             {/* Right column */}
             <div className="contact-right">
               <div className="vox-card">
-                <div className="vox-brand">VO<span>X</span></div>
+                <div className="vox-brand">NETRA<span>VOX</span><span style={{ color: '#E8B84B' }}>.</span></div>
                 <div className="vox-section-label">Merkez Ofis</div>
 
                 {(contact.address || contact.city) && (

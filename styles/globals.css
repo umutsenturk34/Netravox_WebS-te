@@ -388,7 +388,7 @@ textarea.form-input { resize: vertical; min-height: 100px; }
 /* right info card */
 .contact-right { display: flex; flex-direction: column; gap: 14px; }
 .vox-card { background: var(--navy); border-radius: 16px; padding: 28px; color: rgba(255,255,255,0.75); }
-.vox-brand { font-size: 2.2rem; font-weight: 900; color: var(--white); letter-spacing: -0.04em; margin-bottom: 20px; }
+.vox-brand { font-size: 1.6rem; font-weight: 900; color: var(--white); letter-spacing: -0.04em; margin-bottom: 20px; }
 .vox-brand span { color: var(--gold); }
 .vox-section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--gold); display: flex; align-items: center; gap: 6px; margin-bottom: 18px; }
 .vox-section-label::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
