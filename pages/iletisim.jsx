@@ -18,9 +18,7 @@ export default function IletisimPage({ company }) {
     if (!form.firstName || !form.email || !form.message) return;
     setStatus('sending');
     try {
-      const BASE = 'https://api.netravox.com';
-      const SLUG = 'netravox';
-      const res = await fetch(`${BASE}/api/public/${SLUG}/contact`, {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
