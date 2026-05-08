@@ -18,8 +18,8 @@ export default function IletisimPage({ company }) {
     if (!form.firstName || !form.email || !form.message) return;
     setStatus('sending');
     try {
-      const BASE = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5001';
-      const SLUG = process.env.NEXT_PUBLIC_TENANT_SLUG || 'netravox';
+      const BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
+      const SLUG = process.env.NEXT_PUBLIC_SITE_SLUG || 'netravox';
       const res = await fetch(`${BASE}/api/public/${SLUG}/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
