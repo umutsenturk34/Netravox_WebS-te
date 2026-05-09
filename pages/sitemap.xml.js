@@ -26,11 +26,16 @@ export default function Sitemap() {}
 
 export async function getServerSideProps({ res }) {
   let blogUrls = [];
+  let pageUrls = [];
+
+  const [blogRes, pagesRes] = await Promise.allSettled([
+    fetch('https://api.netravox.com/api/public/netravox/blog'),
+    fetch('https://api.netravox.com/api/public/netravox/pages'),
+  ]);
 
   try {
-    const r = await fetch('https://api.netravox.com/api/public/netravox/blog');
-    if (r.ok) {
-      const posts = await r.json();
+    if (blogRes.status === 'fulfilled' && blogRes.value.ok) {
+      const posts = await blogRes.value.json();
       blogUrls = (Array.isArray(posts) ? posts : posts.posts || [])
         .filter((p) => p.slug && p.isPublished !== false)
         .map((p) => ({
@@ -42,7 +47,22 @@ export async function getServerSideProps({ res }) {
     }
   } catch {}
 
-  const allUrls = [...STATIC_PAGES, ...blogUrls];
+  try {
+    if (pagesRes.status === 'fulfilled' && pagesRes.value.ok) {
+      const pages = await pagesRes.value.json();
+      const skipSlugs = new Set(['home', 'anasayfa']);
+      pageUrls = (Array.isArray(pages) ? pages : [])
+        .filter((p) => p.slug && p.isPublished !== false && !skipSlugs.has(p.slug))
+        .map((p) => ({
+          url: `/${p.slug}`,
+          lastmod: p.updatedAt ? p.updatedAt.split('T')[0] : undefined,
+          priority: '0.6',
+          changefreq: 'monthly',
+        }));
+    }
+  } catch {}
+
+  const allUrls = [...STATIC_PAGES, ...pageUrls, ...blogUrls];
 
   res.setHeader('Content-Type', 'application/xml');
   res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=600');
