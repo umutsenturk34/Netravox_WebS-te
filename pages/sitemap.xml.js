@@ -52,9 +52,10 @@ export async function getServerSideProps({ res }) {
       const pages = await pagesRes.value.json();
       const skipSlugs = new Set(['home', 'anasayfa']);
       pageUrls = (Array.isArray(pages) ? pages : [])
-        .filter((p) => p.slug && p.isPublished !== false && !skipSlugs.has(p.slug))
+        .map((p) => ({ ...p, _slug: p.slug?.tr || p.slug?.en || p.slug }))
+        .filter((p) => p._slug && typeof p._slug === 'string' && p.isPublished !== false && !skipSlugs.has(p._slug))
         .map((p) => ({
-          url: `/${p.slug}`,
+          url: `/${p._slug}`,
           lastmod: p.updatedAt ? p.updatedAt.split('T')[0] : undefined,
           priority: '0.6',
           changefreq: 'monthly',
