@@ -6,7 +6,8 @@ import Script from 'next/script';
 
 export default function App({ Component, pageProps }) {
   const { company, nav } = pageProps;
-  const gaId  = company?.analyticsId;
+  debugger;
+  const gaId = company?.analyticsId;
   const gtmId = company?.tagManagerId;
   const pixelId = company?.metaPixelId;
 
@@ -25,7 +26,10 @@ export default function App({ Component, pageProps }) {
       )}
       {gaId && !gtmId && (
         <>
-          <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+            strategy="afterInteractive"
+          />
           <Script id="ga4-init" strategy="afterInteractive">{`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
