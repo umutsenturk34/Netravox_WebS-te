@@ -23,11 +23,10 @@ async function fetchRedirects() {
 }
 
 export async function middleware(request) {
-  const { pathname } = request.nextUrl;
+  const pathname = decodeURIComponent(request.nextUrl.pathname);
 
   const redirects = await fetchRedirects();
   const match = redirects.find((r) => r.from === pathname);
-
   if (match) {
     if (match.to.startsWith('http')) {
       return NextResponse.redirect(match.to, { status: match.type || 301 });

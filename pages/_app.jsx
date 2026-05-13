@@ -6,7 +6,7 @@ import Script from 'next/script';
 
 export default function App({ Component, pageProps }) {
   const { company, nav } = pageProps;
-  debugger;
+
   const gaId = company?.analyticsId;
   const gtmId = company?.tagManagerId;
   const pixelId = company?.metaPixelId;
